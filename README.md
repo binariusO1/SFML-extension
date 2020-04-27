@@ -4,6 +4,7 @@ Some features for SFML C++ library
 
 <b>Slider</b>
 
+Version: Pre-Alpha
 Simply vertical slide bar. It allows to display some value or allows get a value.
 
 Slider.h
