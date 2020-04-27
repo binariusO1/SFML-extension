@@ -11,6 +11,6 @@ Slider.cpp
 
 
 <p align="center">
-  <img src="https://i.imgur.com/84if3Dp.gif" width="240" title="hover text">
+  <img src="https://i.imgur.com/84if3Dp.gif" width="540" title="hover text">
 </p>
 
