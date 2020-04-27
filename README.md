@@ -2,7 +2,7 @@
 Some features for SFML C++ library
 
 
-[b]Slider[/b]
+<b>Slider</b>
 
 Simply vertical slide bar. It allows to display some value or allows get a value.
 
