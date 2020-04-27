@@ -6,7 +6,7 @@ Some features for SFML C++ library
 
 Version: Pre-Alpha
 
-Simply vertical slide bar. It allows to display some value or allows get a value.
+Simply vertical slide bar. It allows to display some value or allows get a modified value.
 
 Slider.h
 Slider.cpp
