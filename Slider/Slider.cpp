@@ -7,7 +7,7 @@ using namespace std;
 //shape.setcale
 
 
-Slider::Slider(float h, float w, float posx, float posy, bool sit=false, bool f=false)	: situation(sit) , fill(f)
+Slider::Slider(float h, float w, float posx, float posy, bool f, bool sit, float mul)	: situation(sit) , fill(f)
 {
 	height = h;
 	width = w;
@@ -47,8 +47,8 @@ Slider::Slider(float h, float w, float posx, float posy, bool sit=false, bool f=
 		fillShape.setSize({ height, fillWidth });
 		fillShape.setFillColor(fillColor);
 	}
-	cout << "actualPosButton: " << actualPosButton;
-	cout << endl;
+	//cout << "actualPosButton: " << actualPosButton;
+	//cout << endl;
 	//if (situation == false) {
 		backgroundShape.setRotation(90.f);
 		buttonShape.setRotation(90.f);
@@ -59,9 +59,12 @@ Slider::Slider(float h, float w, float posx, float posy, bool sit=false, bool f=
 	// VERTIAL BAR
 
 	//initialize some values
-	fontSize = 12, maxValue = 100, minValue = 0, multiple = 1, precision = 2;
+	fontSize = 12, maxValue = 100, minValue = 0, multipleS = mul, precision = 2;
 	buttonHeightlight = false;
 }
+
+//TODO:
+// Draw - eee?
 void Slider::draw(sf::RenderTarget& target, sf::RenderStates state) const
 {
 	//NOTE:
@@ -91,10 +94,17 @@ void Slider::update(sf::RenderWindow& window , float scroll)
 
 	const int hv = 30; //HeightlightValue
 	float smallmultiple = 0.02f;
-	if (maxValue - minValue < 50) {
-		smallmultiple = (float)(maxValue - minValue) / 100;
-	}
 
+	if (maxValue - minValue < 50 && multipleS == 1.f)
+	{
+		//smallmultiple =  (float)(maxValue - minValue)/1000;
+		smallmultiple = (float)(1 / (maxValue - minValue));
+	}
+	else if (multipleS != 1.f)
+	{
+		smallmultiple = 1 / multipleS;
+	}
+	//cout << multipleS << endl;
 	//if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && 
 	//cout << sf::Mouse::getPosition(window).x << " " << (backgroundShape.getPosition().x - (width / 2.f));
 	//cout << endl;
@@ -113,9 +123,9 @@ void Slider::update(sf::RenderWindow& window , float scroll)
 		&& buttonHeightlight == false && isMousePressed == false)
 	{
 
-		cout << "  " << ( mx - backgroundShape.getPosition().x - buttonWidth / 2.f) ;
-		cout <<" ab: " << actualPosButton;
-		cout << endl;
+		//cout << "  " << ( mx - backgroundShape.getPosition().x - buttonWidth / 2.f) ;
+		//cout <<" ab: " << actualPosButton;
+		//cout << endl;
 
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) )
 		{
@@ -175,7 +185,7 @@ void Slider::update(sf::RenderWindow& window , float scroll)
 		//cout << endl;
 		//maxValue
 
-		cout << " sm: " << smallmultiple << " aposbt: " << actualPosButton << endl;
+		//cout << " sm: " << smallmultiple << " aposbt: " << actualPosButton << endl;
 		//this->actualPosButton += scroll * (smallmultiple * actualPosButton);
 		this->actualPosButton += scroll * smallmultiple * pathButton;
 
@@ -269,7 +279,7 @@ double Slider::getValue()
 {
 	multiple = (((double)actualPosButton - (double)backgroundShape.getPosition().x - (double)(buttonWidth / 2.f)) / ((double)width - (double)buttonWidth));
 	double valueScreen = minValue + multiple * (maxValue - minValue);
-	return valueScreen;
+	return valueScreen;//ceil(valueScreen);
 }
 
 std::string Slider::to_string_with_precision(double a_value)

@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////
 //
 // Version: Pre-Alpha
-//
+// Date: 28-04-2020
 // for SFML - Simple and Fast Multimedia Library
 // Copyright (C) 2020 BinariusO1 https://github.com/binariusO1
 //
@@ -45,7 +45,7 @@ public:
 /// \bool fill				1-yes, 0-no
 ///	\
 ////////////////////////////////////////////////////////////
-	Slider(float h, float w, float posx, float posy, bool sit, bool fill);
+	Slider(float h, float w, float posx, float posy, bool fill = true, bool sit = false,float mul=1.f);
 	Slider() = delete;
 	virtual ~Slider() = default;
 
@@ -145,6 +145,7 @@ private:
 	double minValue;
 	double maxValue;
 	double multiple;
+	double multipleS;
 	int precision;
 	unsigned int fontSize;
 	sf::Color buttonColor;
