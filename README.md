@@ -1,6 +1,7 @@
 # SFML-extension
 Some features for SFML C++ library
-
+<p></p>
+<img src="https://img.shields.io/badge/C++-17 | SFML-blue" title="hover text">
 
 <b>Slider</b>
 
